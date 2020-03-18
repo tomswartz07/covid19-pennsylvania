@@ -53,15 +53,19 @@ class bcolors:
 raw_html = simple_get('https://www.health.pa.gov/topics/disease/Pages/Coronavirus.aspx')
 html = BeautifulSoup(raw_html, 'html.parser')
 
+updated = html.find('em')
+if updated.text is not None:
+    print(bcolors.OKBLUE + updated.text + bcolors.ENDC)
+
 tds = [row.findAll('td') for row in html.findAll('tr')]
 results = {td[0].string: td[1].string for td in tds}
 del results['\u200bNegative']
-results['Statewide'] = results.pop(None)
+results['Statewide'] = results.pop('1,187')
 
 json_out = json.loads(json.dumps(results))
-print(bcolors.FAIL + "{} cases confirmed statewide".format(json_out['Statewide']) + bcolors.ENDC)
+print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out['Statewide']) + bcolors.ENDC)
 for county, cases in json_out.items():
     if county != 'Statewide':
-        print("{} confirmed cases in {} county".format(cases, county))
+        print("{:>4}: {}".format(cases, county))
     if county == 'Lancaster' or county == 'Schuylkill':
         print(bcolors.WARNING + "Warning: {} active cases in {} county.".format(cases, county) + bcolors.ENDC)
