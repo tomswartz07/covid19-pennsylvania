@@ -15,8 +15,7 @@ def simple_get(url):
             if is_good_response(resp):
                 return resp.content
             print("Unable to get page...")
-            return None
-
+            raise RequestException
     except RequestException as e:
         log_error('Error during requests to {0} : {1}'.format(url, str(e)))
         return None
@@ -41,6 +40,9 @@ def log_error(e):
     print(e)
 
 class bcolors:
+    """
+    Defines some set colors using escape codes
+    """
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
@@ -50,22 +52,36 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-raw_html = simple_get('https://www.health.pa.gov/topics/disease/Pages/Coronavirus.aspx')
+raw_html = simple_get('https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx')
 html = BeautifulSoup(raw_html, 'html.parser')
 
-updated = html.find('em')
+updated = html.find(class_='ms-rteStyle-Quote')
 if updated.text is not None:
     print(bcolors.OKBLUE + updated.text + bcolors.ENDC)
 
-tds = [row.findAll('td') for row in html.findAll('tr')]
-results = {td[0].string: td[1].string for td in tds}
-del results['\u200bNegative']
-results['Statewide'] = results.pop('1,187')
+rows = html.findAll('tr')
+headers = {}
+data = []
+for row in rows:
+    cells = row.findAll("td")
+    items = []
+    for index in cells:
+        items.append(index.text.strip(u'\u200b'))
+    data.append(items)
+results = list(filter(None, data))
 
 json_out = json.loads(json.dumps(results))
-print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out['Statewide']) + bcolors.ENDC)
-for county, cases in json_out.items():
-    if county != 'Statewide':
-        print("{:>4}: {}".format(cases, county))
-    if county == 'Lancaster' or county == 'Schuylkill':
+# Remove the stupid table rows that are actually headers
+json_out.pop(0)
+# Fix the statewide count, we don't care about negative test
+json_out[0][0] = 'Statewide'
+print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][1]) + bcolors.ENDC)
+print(bcolors.WARNING + bcolors.BOLD + "{} deaths confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
+for item in json_out:
+    county = item[0]
+    cases = item[1]
+    deaths = item[2] or 0
+    if county in ('Lancaster', 'Schuylkill'):
         print(bcolors.WARNING + "Warning: {} active cases in {} county.".format(cases, county) + bcolors.ENDC)
+    if county != 'Statewide':
+        print("{} county: {} cases, {} deaths".format(county, cases, deaths))
