@@ -9,6 +9,13 @@ The script can optionally highlight certain counties which you may be interested
 in- in my case, I'm interested in Lancaster and Schuylkill counties.
 If you wish to highlight different counties, simply update the array in the script.
 
+## Current Cases
+
+Below is a graph of confirmed cases generated using the most recent available data
+and `gnuplot`.
+
+![Graph](cases.png)
+
 ## Using
 
 To use this script, simply run it:
