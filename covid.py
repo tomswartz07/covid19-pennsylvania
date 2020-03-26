@@ -75,6 +75,8 @@ json_out = json.loads(json.dumps(results))
 json_out.pop(0)
 # Fix the statewide count, we don't care about negative test
 json_out[0][0] = 'Statewide'
+# Remove the stupid table rows that are actually headers
+json_out.pop(1)
 print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][1]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + "{} deaths confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
 for item in json_out:
