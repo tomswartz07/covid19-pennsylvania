@@ -37,6 +37,14 @@ python covid.py
 affect the bandwidth of the host. Please do not use this script to poll the
 site more often than once every hour or so. The data does not change that often.
 
+The scripts and data used to generate this graph are also included in the repository.
+Simply install `gnuplot` and run:
+
+```
+gnuplot plot_PA_Cases.gpi
+```
+
+The image file will be updated at `cases.png`
 
 ## Sample Output
 ```
