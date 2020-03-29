@@ -1,18 +1,30 @@
-set terminal png size 900,900
-set output 'cases.png'
-set multiplot layout 2, 1 title "PA COVID-19 Cases"
-set title "Standard Scale"
+reset
 set xlabel "Date"
 set xdata time
 set timefmt "%m/%d/%y"
 set ylabel "Number of Confirmed Cases"
+set autoscale
 set grid
+set terminal png size 900,900
+set output 'cases.png'
+# Attempt exponential fit
+#a = 0.4737
+#b = 0.3942
+#c = 1.5
+#a = 3.91e-61
+#b = 911
+#c = -3.3
+#f(x) = a*exp(((b*x)/1e10)+c)
+#fit f(x) "cases.data" using 1:2 via a, b, c
+set multiplot layout 2, 1 title "PA COVID-19 Cases"
+set title "Standard Scale"
 unset key
-plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"
+plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"#, f(x)
 #
 set logscale y
 unset key
 set title "Log Scale"
-plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"
+plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"#, f(x)
+unset logscale y
 #
 unset multiplot
