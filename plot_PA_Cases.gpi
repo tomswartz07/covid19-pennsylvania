@@ -34,8 +34,7 @@ set ylabel "New Cases"
 set xlabel "Total Confirmed Cases"
 unset xdata
 set output "trajectory.png"
-set multiplot layout 2, 1 title "Trajectory of COVID-19 Confirmed Cases"
-unset title
+set title "Trajectory of COVID-19 Confirmed Cases"
 set logscale x
 set logscale y
 plot "cases.data" using 2:4 smooth unique with linespoints linestyle 1 title "Trajectory"
