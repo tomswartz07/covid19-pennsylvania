@@ -1,3 +1,4 @@
+# Graph 1
 reset
 set xlabel "Date"
 set xdata time
@@ -28,3 +29,15 @@ plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"#, f(x)
 unset logscale y
 #
 unset multiplot
+# Graph 2
+set ylabel "New Cases"
+set xlabel "Total Confirmed Cases"
+unset xdata
+set output "trajectory.png"
+set multiplot layout 2, 1 title "Trajectory of COVID-19 Confirmed Cases"
+unset title
+set logscale x
+set logscale y
+plot "cases.data" using 2:4 smooth unique with linespoints linestyle 1 title "Trajectory"
+unset logscale x
+unset logscale y
