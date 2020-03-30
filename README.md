@@ -9,18 +9,6 @@ The script can optionally highlight certain counties which you may be interested
 in- in my case, I'm interested in Lancaster and Schuylkill counties.
 If you wish to highlight different counties, simply update the array in the script.
 
-## Current Cases
-
-Below is a graph of confirmed cases generated using the most recent available data
-and `gnuplot`.
-
-![Graph](cases.png)
-
-![Trajectory](trajectory.png)
-
-For more information on how to read the trajectory graph,
-please see this excellent video by [MinutePhysics](https://www.youtube.com/watch?v=54XLXg4fYsc)
-
 ## Using
 
 To use this script, simply run it:
@@ -42,7 +30,12 @@ python covid.py
 affect the bandwidth of the host. Please do not use this script to poll the
 site more often than once every hour or so. The data does not change that often.
 
-The scripts and data used to generate this graph are also included in the repository.
+The scripts and data used to generate the graphs are also included in the
+repository.
+The data is not automatically populated in to the `gnuplot` data file, it is
+instead calculated separately following the daily PA Dept of Health update,
+and provided as described in this repository, so that careful attention can be
+provided to ensure validity.
 Simply install `gnuplot` and run:
 
 ```
@@ -50,6 +43,19 @@ gnuplot plot_PA_Cases.gpi
 ```
 
 The image file will be updated at `cases.png`
+
+## Current Cases
+
+Below are graphs of confirmed cases, fatalities, and other potentially useful
+data generated using the most recent available data and `gnuplot`.
+
+![Graph](cases.png)
+
+![Trajectory](trajectory.png)
+
+For more information on how to read the trajectory
+graph, please see this excellent video by Henry Reich of
+[MinutePhysics](https://www.youtube.com/watch?v=54XLXg4fYsc).
 
 ## Sample Output
 ```
