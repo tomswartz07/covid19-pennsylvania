@@ -27,16 +27,25 @@ unset key
 set title "Log Scale"
 plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"#, f(x)
 unset logscale y
-#
 unset multiplot
 # Graph 2
 set ylabel "New Cases"
 set xlabel "Total Confirmed Cases"
 unset xdata
 set output "trajectory.png"
+set multiplot layout 2, 1
+set title "Confirmed Pennsylvania COVID-19 Deaths"
+set xlabel "Date"
+set ylabel "Deaths"
+set xdata time
+plot "cases.data" using 1:3 smooth unique with linespoints linestyle 1 title "Deaths"
+unset xdata
+#
 set title "Trajectory of COVID-19 Confirmed Cases"
 set logscale x
 set logscale y
 plot "cases.data" using 2:4 smooth unique with linespoints linestyle 1 title "Trajectory"
 unset logscale x
 unset logscale y
+#
+unset multiplot
