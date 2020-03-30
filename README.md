@@ -16,9 +16,6 @@ and `gnuplot`.
 
 ![Graph](cases.png)
 
-
-The 'trajectory' of the spread can be seen here:
-
 ![Trajectory](trajectory.png)
 
 For more information on how to read the trajectory graph,
