@@ -49,6 +49,10 @@ The image file will be updated at `cases.png`
 Below are graphs of confirmed cases, fatalities, and other potentially useful
 data generated using the most recent available data and `gnuplot`.
 
+R<sub>0</sub> is the 'Growth Factor'.
+In the most basic terms, this is how many new cases are created by existing
+cases.
+
 ![Graph](cases.png)
 
 ![Trajectory](trajectory.png)
