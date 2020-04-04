@@ -1,6 +1,6 @@
 # Graph 1
 reset
-set xlabel "Date"
+#set xlabel "Date"
 set xdata time
 set timefmt "%m/%d/%y"
 set ylabel "Number of Confirmed Cases"
@@ -29,7 +29,7 @@ plot "cases.data" using 1:2 with linespoints linestyle 1 title "Cases"#, f(x)
 unset logscale y
 #
 set title "Confirmed Pennsylvania COVID-19 Deaths"
-set xlabel "Date"
+#set xlabel "Date"
 set ylabel "Deaths"
 set xdata time
 plot "cases.data" using 1:3 smooth unique with linespoints linestyle 1 title "Deaths"
