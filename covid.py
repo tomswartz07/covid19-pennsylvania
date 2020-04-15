@@ -82,6 +82,15 @@ for i in range(1, 17):
     json_out.pop(1)
 
 #affected_counties = int(len(json_out)) - 1
+
+# Apparently they're publishing Nursing Home data too?
+# Kind of niche for the topic page
+# Regardless, get rid of it from our output
+#
+# Heading gets cleared here, county homes get
+# skipped below
+json_out.pop(68)
+
 print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][1]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + "{} deaths confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
 #print(bcolors.WARNING + bcolors.UNDERLINE + "{} of 67 counties affected".format(affected_counties) + bcolors.ENDC)
@@ -89,7 +98,10 @@ for item in json_out:
     county = item[0].strip()
     cases = item[1]
     deaths = item[2].strip('\n') or 0
-    if county in ('Lancaster', 'Schuylkill'):
-        print(bcolors.WARNING + "Warning: {} active cases in {} county.".format(cases, county) + bcolors.ENDC)
-    if county != 'Statewide':
-        print("{} county: {} cases, {} deaths".format(county, cases, deaths))
+    if county.istitle():
+        if county in ('Lancaster', 'Schuylkill'):
+            print(bcolors.WARNING + "Warning: {} active cases in {} county.".format(cases, county) + bcolors.ENDC)
+        if county != 'Statewide':
+            print("{} county: {} cases, {} deaths".format(county, cases, deaths))
+    elif county.isupper():
+        pass
