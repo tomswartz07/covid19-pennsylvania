@@ -80,10 +80,11 @@ json_out.pop(1)
 # Remove age and hospitalization rate percentages (for now)
 for i in range(1, 17):
     json_out.pop(1)
-affected_counties = int(len(json_out)) - 1
+
+#affected_counties = int(len(json_out)) - 1
 print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][1]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + "{} deaths confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
-print(bcolors.WARNING + bcolors.UNDERLINE + "{} of 67 counties affected".format(affected_counties) + bcolors.ENDC)
+#print(bcolors.WARNING + bcolors.UNDERLINE + "{} of 67 counties affected".format(affected_counties) + bcolors.ENDC)
 for item in json_out:
     county = item[0].strip()
     cases = item[1]
