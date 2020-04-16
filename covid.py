@@ -57,7 +57,8 @@ html = BeautifulSoup(raw_html, 'html.parser')
 
 updated = html.find(class_='ms-rteStyle-Quote')
 if updated.text is not None:
-    print(bcolors.OKBLUE + updated.text + bcolors.ENDC)
+    updated_text = updated.text.replace('\n', '').replace('  ', '')
+    print(bcolors.OKBLUE + updated_text + bcolors.ENDC)
 
 rows = html.findAll('tr')
 headers = {}
@@ -74,7 +75,7 @@ json_out = json.loads(json.dumps(results))
 # Remove the stupid table rows that are actually headers
 json_out.pop(0)
 # Fix the statewide count, we don't care about negative test
-json_out[0][0] = 'Statewide'
+json_out[0].insert(0, 'Statewide')
 # Remove the stupid table rows that are actually headers
 json_out.pop(1)
 # Remove age and hospitalization rate percentages- not accurate
@@ -91,14 +92,23 @@ for i in range(1, 17):
 # skipped below
 json_out.pop(68)
 
-print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][1]) + bcolors.ENDC)
-print(bcolors.WARNING + bcolors.BOLD + "{} deaths confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
-#print(bcolors.WARNING + bcolors.UNDERLINE + "{} of 67 counties affected".format(affected_counties) + bcolors.ENDC)
+# Cool, also jamming demographic info in with no proper headers
+# Would be great if they didn't randomly update the page
+# and stuff various tables all over the place with no unique ids.
+# Let's drop that info off because it's not really relevant for this
+del json_out[68:]
+
+# OF COURSE the order for unconfirmed, confirmed, and deaths are different than
+# the per-county table
+print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
+print(bcolors.WARNING + bcolors.BOLD + \
+        "{} deaths confirmed statewide".format(json_out[0][3]) + bcolors.ENDC)
 for item in json_out:
     county = item[0].strip()
     cases = item[1]
-    deaths = item[2].strip('\n') or 0
-    if len(item) == 3:
+    negatives = item[2]
+    deaths = item[3].strip('\n') or 0
+    if len(item) == 4:
         if county in ('Lancaster', 'Schuylkill'):
             print(bcolors.WARNING + "Warning: {} active cases, {} deaths in {} county.".format(cases, deaths, county) + bcolors.ENDC)
         if county != 'Statewide':
