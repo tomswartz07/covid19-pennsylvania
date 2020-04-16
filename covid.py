@@ -77,7 +77,7 @@ json_out.pop(0)
 json_out[0][0] = 'Statewide'
 # Remove the stupid table rows that are actually headers
 json_out.pop(1)
-# Remove age and hospitalization rate percentages (for now)
+# Remove age and hospitalization rate percentages- not accurate
 for i in range(1, 17):
     json_out.pop(1)
 
@@ -98,10 +98,10 @@ for item in json_out:
     county = item[0].strip()
     cases = item[1]
     deaths = item[2].strip('\n') or 0
-    if county.istitle():
+    if len(item) == 3:
         if county in ('Lancaster', 'Schuylkill'):
-            print(bcolors.WARNING + "Warning: {} active cases in {} county.".format(cases, county) + bcolors.ENDC)
+            print(bcolors.WARNING + "Warning: {} active cases, {} deaths in {} county.".format(cases, deaths, county) + bcolors.ENDC)
         if county != 'Statewide':
             print("{} county: {} cases, {} deaths".format(county, cases, deaths))
-    elif county.isupper():
+    elif len(item) > 3:
         pass
