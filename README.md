@@ -61,6 +61,26 @@ For more information on how to read the trajectory
 graph, please see this excellent video by Henry Reich of
 [MinutePhysics](https://www.youtube.com/watch?v=54XLXg4fYsc).
 
+## Disclaimer
+
+This information is provided as part of an amateur attempt to analyze the data.
+This information should not be interpreted as exact scientific analysis, nor
+has it been peer reviewed in any way.
+Nonetheless, every attempt has been made to validate the accuracy of the
+numbers, such as providing a value of percent-error and a steadfast policy of +1
+day estimations, only.
+
+The only 'exact' values are those for the daily cases, deaths, and net daily-new
+cases, insofar as they have been reported by the Pennsylvania Department of
+Heath.
+For example, the values for R<sub>0</sub> are approximations, at best.
+For more precise R<sub>0</sub> calculations, [other
+sources](https://github.com/k-sys/covid-19/blob/master/Realtime%20R0.ipynb)
+should be used instead.
+
+For a more scientific and precise analysis, it is recommended that you seek out
+reporting performed by actual epidemiologists and data scientists.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
