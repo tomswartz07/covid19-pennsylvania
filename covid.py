@@ -79,7 +79,7 @@ json_out[0].insert(0, 'Statewide')
 # Remove the stupid table rows that are actually headers
 json_out.pop(1)
 # Remove age and hospitalization rate percentages- not accurate
-for i in range(1, 17):
+for i in range(1, 15):
     json_out.pop(1)
 
 #affected_counties = int(len(json_out)) - 1
