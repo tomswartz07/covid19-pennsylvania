@@ -61,6 +61,31 @@ For more information on how to read the trajectory
 graph, please see this excellent video by Henry Reich of
 [MinutePhysics](https://www.youtube.com/watch?v=54XLXg4fYsc).
 
+## Calculation Formulas
+
+The only two datapoints provided by the PA Department of Health are
+`cases` and `deaths`.
+The other values are calculated using reasonable estimations and approximations
+to the scientific models.
+
+This section will describe how the calculations are performed and the formulae
+for each value shown in `cases.data`.
+
+**Variables:**
+- C<sub>t</sub>: Today's value for cases
+- C<sub>t-1</sub>: Yesterday's value for cases
+
+1. **New Cases:** The difference between the current value and the previous days value.
+- C<sub>t</sub> - C<sub>t-1</sub>
+2. **Growth Ratio:** The ratio of current cases to previous days cases. Rough approximation of the "R<sub>0</sub> Infectivity Rate".
+- C<sub>t</sub> / C<sub>t-1</sub>
+3. **Estimated Day:** The estimated number of cases for the day, based upon the growth ratio.
+- C<sub>t-1</sub> * Growth Ratio<sub>t-1</sub>
+4. **Off By:** The difference between the estimate and the actual daily count.
+- -1 * (Estimated Day<sub>t</sub> - C<sub>t</sub>)
+5. **Pct Error:** The percent error calculated for the difference between the estimated count and the actual count.
+- ABS((Estimated Day<sub>t</sub> - C<sub>t</sub>) / C<sub>t</sub>)
+
 ## Disclaimer
 
 This information is provided as part of an amateur attempt to analyze the data.
