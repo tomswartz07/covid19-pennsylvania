@@ -106,11 +106,11 @@ del json_out[69:]
 # OF COURSE the order for unconfirmed, confirmed, and deaths are different than
 # the per-county table
 print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1]) + bcolors.ENDC)
-print(bcolors.HEADER + "{} probable cases statewide".format(json_out[1][2]) + bcolors.ENDC)
+print(bcolors.HEADER + "…of which {} are probable/unconfirmed cases".format(json_out[1][2]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + \
         "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + \
-        "{} probable deaths statewide".format(json_out[1][4]) + bcolors.ENDC)
+        "…of which {} are probable/unconfirmed deaths".format(json_out[1][4]) + bcolors.ENDC)
 for item in json_out:
     county = item[0].strip()
     cases = item[1]

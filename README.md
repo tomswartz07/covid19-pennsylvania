@@ -94,6 +94,9 @@ Because until this point, all data were assumed to be probable (and most likely)
 the calculations will continue to use this metric.
 Reasonable accommodations will be made to integrate the probable cases into error
 calculations, where possible.
+It's also important to note that the numbers do not identify which counties in
+particular are included in the 'probable' counts, so it's presently impossible
+do differentiate or reconcile the numbers.
 
 This information is provided as part of an amateur attempt to analyze the data.
 This information should not be interpreted as exact scientific analysis, nor
