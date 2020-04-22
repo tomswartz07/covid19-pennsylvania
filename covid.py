@@ -56,7 +56,10 @@ raw_html = simple_get('https://www.health.pa.gov/topics/disease/coronavirus/Page
 html = BeautifulSoup(raw_html, 'html.parser')
 
 updated = html.find(class_='ms-rteStyle-Quote')
-if updated.text is not None:
+if updated.text == '':
+    updated_text = "Unable to get updated time"
+    print(bcolors.OKBLUE + updated_text + bcolors.ENDC)
+elif updated.text is not None:
     updated_text = updated.text.replace('\n', '').replace('  ', '')
     print(bcolors.OKBLUE + updated_text + bcolors.ENDC)
 
@@ -74,13 +77,15 @@ results = list(filter(None, data))
 json_out = json.loads(json.dumps(results))
 # Remove the stupid table rows that are actually headers
 json_out.pop(0)
-# Fix the statewide count, we don't care about negative test
-json_out[0].insert(0, 'Statewide')
+# Fix the statewide count, they're including probable cases in the count now
+json_out[0].insert(0, 'Probable')
 # Remove the stupid table rows that are actually headers
 json_out.pop(1)
+# Handle the full statewide info
+json_out[1].insert(0, 'Statewide')
 # Remove age and hospitalization rate percentages- not accurate
-for i in range(1, 15):
-    json_out.pop(1)
+for i in range(1, 16):
+    json_out.pop(2)
 
 #affected_counties = int(len(json_out)) - 1
 
@@ -90,19 +95,22 @@ for i in range(1, 15):
 #
 # Heading gets cleared here, county homes get
 # skipped below
-json_out.pop(68)
+json_out.pop(69)
 
 # Cool, also jamming demographic info in with no proper headers
 # Would be great if they didn't randomly update the page
 # and stuff various tables all over the place with no unique ids.
 # Let's drop that info off because it's not really relevant for this
-del json_out[68:]
+del json_out[69:]
 
 # OF COURSE the order for unconfirmed, confirmed, and deaths are different than
 # the per-county table
-print(bcolors.HEADER + "{} cases confirmed statewide".format(json_out[0][2]) + bcolors.ENDC)
+print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1]) + bcolors.ENDC)
+print(bcolors.HEADER + "{} probable cases statewide".format(json_out[1][2]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + \
-        "{} deaths confirmed statewide".format(json_out[0][3]) + bcolors.ENDC)
+        "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
+print(bcolors.WARNING + bcolors.BOLD + \
+        "{} probable deaths statewide".format(json_out[1][4]) + bcolors.ENDC)
 for item in json_out:
     county = item[0].strip()
     cases = item[1]
@@ -111,7 +119,7 @@ for item in json_out:
     if len(item) == 4:
         if county in ('Lancaster', 'Schuylkill'):
             print(bcolors.WARNING + "Warning: {} active cases, {} deaths in {} county.".format(cases, deaths, county) + bcolors.ENDC)
-        if county != 'Statewide':
+        if county not in ('Statewide', 'Probable'):
             print("{} county: {} cases, {} deaths".format(county, cases, deaths))
     elif len(item) > 3:
         pass

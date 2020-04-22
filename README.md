@@ -86,7 +86,14 @@ for each value shown in `cases.data`.
 5. **Pct Error:** The percent error calculated for the difference between the estimated count and the actual count.
 - ABS((Estimated Day<sub>t</sub> - C<sub>t</sub>) / C<sub>t</sub>)
 
-## Disclaimer
+## Disclaimers
+
+As of 22 Apr 2020, the PA Dept of Health began providing 'probable' cases and
+deaths, alongside confirmed data.
+Because until this point, all data were assumed to be probable (and most likely)
+the calculations will continue to use this metric.
+Reasonable accommodations will be made to integrate the probable cases into error
+calculations, where possible.
 
 This information is provided as part of an amateur attempt to analyze the data.
 This information should not be interpreted as exact scientific analysis, nor
