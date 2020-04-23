@@ -78,14 +78,14 @@ json_out = json.loads(json.dumps(results))
 # Remove the stupid table rows that are actually headers
 json_out.pop(0)
 # Fix the statewide count, they're including probable cases in the count now
-json_out[0].insert(0, 'Probable')
+json_out[0].insert(0, 'Statewide')
 # Remove the stupid table rows that are actually headers
 json_out.pop(1)
 # Handle the full statewide info
-json_out[1].insert(0, 'Statewide')
+#json_out[1].insert(0, 'Statewide')
 # Remove age and hospitalization rate percentages- not accurate
-for i in range(1, 16):
-    json_out.pop(2)
+for i in range(1, 15):
+    json_out.pop(1)
 
 #affected_counties = int(len(json_out)) - 1
 
@@ -95,22 +95,22 @@ for i in range(1, 16):
 #
 # Heading gets cleared here, county homes get
 # skipped below
-json_out.pop(69)
+json_out.pop(68)
 
 # Cool, also jamming demographic info in with no proper headers
 # Would be great if they didn't randomly update the page
 # and stuff various tables all over the place with no unique ids.
 # Let's drop that info off because it's not really relevant for this
-del json_out[69:]
+del json_out[68:]
 
 # OF COURSE the order for unconfirmed, confirmed, and deaths are different than
 # the per-county table
 print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1]) + bcolors.ENDC)
-print(bcolors.HEADER + "…of which {} are probable/unconfirmed cases".format(json_out[1][2]) + bcolors.ENDC)
+#print(bcolors.HEADER + "…of which {} are probable/unconfirmed cases".format(json_out[1][2]) + bcolors.ENDC)
 print(bcolors.WARNING + bcolors.BOLD + \
         "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
-print(bcolors.WARNING + bcolors.BOLD + \
-        "…of which {} are probable/unconfirmed deaths".format(json_out[1][4]) + bcolors.ENDC)
+#print(bcolors.WARNING + bcolors.BOLD + \
+#        "…of which {} are probable/unconfirmed deaths".format(json_out[1][4]) + bcolors.ENDC)
 for item in json_out:
     county = item[0].strip()
     cases = item[1]
