@@ -70,7 +70,7 @@ set pct_error = nv.pct_error
 from new_values nv
 where nv.date = tr.date
 and tr.pct_error is Null
---returning tr.*
+returning tr.*
 ;
 
 \o cases.data
