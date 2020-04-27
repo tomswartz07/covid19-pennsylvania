@@ -9,6 +9,9 @@ The script can optionally highlight certain counties which you may be interested
 in- in my case, I'm interested in Lancaster and Schuylkill counties.
 If you wish to highlight different counties, simply update the array in the script.
 
+I gave a brief talk about this repository as part of TechLancaster.
+The video is available [here](https://youtu.be/c3zoHHA-1Nw).
+
 ## Using
 
 To use this script, simply run it:
