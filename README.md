@@ -33,6 +33,30 @@ python covid.py
 affect the bandwidth of the host. Please do not use this script to poll the
 site more often than once every hour or so. The data does not change that often.
 
+#### Database
+Ideally, the daily cases and fatalities would be stored in a database for ease
+of use and to allow for powerful querying features.
+In an effort to allow for easy duplication of the setup, a `schema.sql` file is
+provided to allow for a duplicate Postgres database to be used.
+
+To set this up, ensure you have a working Postgres database, then run
+```
+psql < schema.sql
+```
+You may then load the data as you see fit, including external sources as
+referenced in the schema file.
+The schema file is annotated with comments indicating each section and it's
+usage.
+
+For convenience, a daily update SQL script has been provided as well, allowing
+for easy and quick updating of the various stats which are not provided by the
+Department of Health.
+
+A further bonus of having the information in a database is the ability to hook
+external tools into it for visualization and data processing uses, such as
+Grafana.
+
+#### Plot Generation
 The scripts and data used to generate the graphs are also included in the
 repository.
 The data is not automatically populated in to the `gnuplot` data file, it is
@@ -46,6 +70,25 @@ gnuplot plot_PA_Cases.gpi
 ```
 
 The image file will be updated at `cases.png`
+
+## Updating Process
+Typically, a daily update process is as follows:
+1. Insert the daily data into the db:
+    ```sql
+    INSERT INTO covid19.covid19pa (date, confirmed, deaths) VALUES ("YYYY-MM-DD", ###, ###);
+    ```
+2. Run the daily update script:
+    ```sh
+    psql --file=daily-update.sql
+    ```
+3. Plot the data:
+    ```sh
+    gnuplot plot_PA_Cases.gpi
+    ```
+4. Update any daily events, if necessary:
+    ```sql
+    INSERT INTO covid19.pa_events (time, text) VALUES ('YYYY-MM-DD HH:MM:SS-4', 'Event');
+    ```
 
 ## Current Cases
 
@@ -119,6 +162,17 @@ should be used instead.
 For a more scientific and precise analysis, it is recommended that you seek out
 reporting performed by actual epidemiologists and data scientists.
 
+## Notable Changes
+
+- 27 Apr 2020: Updated method for creating the data file. Previously, data for
+  each day was computed by manual processes in a spreadsheet. As of today, all
+  calculated values are processed by the database and provided as output
+  (i.e. there is no spreadsheet involved anymore). As a result, this allows for
+  a more 'open' view of calculations, since the `.sql` file used to update the
+  daily values can also be provided for replication elsewhere.
+  Notably, the plotted output does not change between this and the parent
+  commit, strongly indicating that there are no changes to the fundamental data.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
@@ -176,3 +230,12 @@ Wayne county: 6 cases, 0 deaths
 Westmoreland county: 24 cases, 0 deaths
 York county: 21 cases, 0 deaths
 ```
+
+## Contributing
+
+Contributions are welcome.
+Please ensure that any modifications to the database methods are tested, and
+validated against a freshly initialized copy of the DB.
+
+PR's related to improving the accuracy and precision of the Growth Ratio are
+welcomed.
