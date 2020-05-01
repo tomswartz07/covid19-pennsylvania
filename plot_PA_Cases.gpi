@@ -51,7 +51,17 @@ m = 1e-9
 b = 0.1
 f(x) = m*x+b
 fit f(x) "cases.data" every ::11 using 1:5 via m, b
-plot "cases.data" every ::11 using 1:5 smooth unique with linespoints linestyle 1 title "R_0 Growth Ratio", f(x) title "Trend"
+
+#samples(x) = $0 > 4 ? 5 : ($0+1)
+#avg5(x) = (shift5(x), (back1+back2+back3+back4+back5)/samples($0))
+#shift5(x) = (back5 = back4, back4 = back3, back3 = back2, back2 = back1, back1 = x)
+#init(x) = (back1 = back2 = back3 = back4 = back5 = sum = 0)
+#plot sum = init(0), \
+#"cases.data" every ::11 using 1:5 smooth unique with linespoints linestyle 1 title "R_0 Growth Ratio",\
+# f(x) title "Trend",\
+#"cases.data" every ::11 using 1:(avg5($5)) title "Running Average, 5 Previous" with linespoints pt 7 ps 0.5 lw 1 lc rgb "blue"
+plot "cases.data" every ::11 using 1:5 smooth unique with linespoints linestyle 1 title "R_0 Growth Ratio",\
+f(x) title "Trend"
 unset xdata
 unset yrange
 #
