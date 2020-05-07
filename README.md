@@ -173,6 +173,12 @@ reporting performed by actual epidemiologists and data scientists.
   Notably, the plotted output does not change between this and the parent
   commit, strongly indicating that there are no changes to the fundamental data.
 
+- 7 May 2020: Updated plot method for Trajectory graph. This averaging plot
+  (as opposed to the previous exact data plot) more closely matches the ideals
+  and functions behind the original plot design from MinutePhysics. It is a
+  'pessimistic' interpretation of the data, and will therefore show a downturn
+  more clearly when the increase of infection rate is slowing.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
