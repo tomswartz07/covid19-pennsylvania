@@ -115,8 +115,8 @@ for item in json_out:
     county = item[0].strip()
     cases = item[1]
     negatives = item[2]
-    deaths = item[3].strip('\n') or 0
-    if len(item) == 4:
+    deaths = "N/A"  #item[3].strip('\n') or 0
+    if len(item) == 3:
         if county in ('Lancaster', 'Schuylkill'):
             print(bcolors.WARNING + "Warning: {} cases, {} deaths in {} county.".format(cases, deaths, county) + bcolors.ENDC)
         if county not in ('Statewide', 'Probable'):
