@@ -84,7 +84,9 @@ json_out.pop(1)
 # Handle the full statewide info
 #json_out[1].insert(0, 'Statewide')
 # Remove age and hospitalization rate percentages- not accurate
-for i in range(1, 15):
+# They're also showing an estimated (lol) percentage of recovered.
+# Three asterisks proceed this recovered number, so we'll just ignore it too.
+for i in range(1, 18):
     json_out.pop(1)
 
 #affected_counties = int(len(json_out)) - 1
