@@ -107,6 +107,8 @@ For more information on how to read the trajectory
 graph, please see this excellent video by Henry Reich of
 [MinutePhysics](https://www.youtube.com/watch?v=54XLXg4fYsc).
 
+![New Cases](new_cases.png)
+
 ## Calculation Formulas
 
 The only two datapoints provided by the PA Department of Health are
