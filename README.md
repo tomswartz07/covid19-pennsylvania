@@ -181,6 +181,9 @@ reporting performed by actual epidemiologists and data scientists.
   'pessimistic' interpretation of the data, and will therefore show a downturn
   more clearly when the increase of infection rate is slowing.
 
+- 27 May 2020: As a fun little add on, the decoded text version of the genome has
+  been added to the repository.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
