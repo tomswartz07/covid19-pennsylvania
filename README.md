@@ -184,6 +184,12 @@ reporting performed by actual epidemiologists and data scientists.
 - 27 May 2020: As a fun little add on, the decoded text version of the genome has
   been added to the repository.
 
+- 3 Jun 2020: Changed the range for the Growth Ratio plot to provide more detail
+  in the recent data, as it begins to asymptotically approach a value of `1`. As
+  such, this graph now only shows data >30 days in. Once the overall event has
+  slowed to 'near completion', the range of this plot will be re-opened to show
+  the growth ratio over the entire course of the event.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
