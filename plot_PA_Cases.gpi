@@ -65,7 +65,7 @@ unset key
 set logscale x
 set logscale y
 plot sum = init(0), \
-"cases.data" using 2:(avg5($4)) with lines lw 1 lc rgb "blue" title "Averaged Trajectory"
+"cases.data" using 2:(avg5($4)) with lines lw 3 lc rgb "blue" title "Averaged Trajectory"
 unset logscale x
 unset logscale y
 #
@@ -77,4 +77,6 @@ set title "Daily New Cases"
 set ylabel "Number of New Cases"
 unset xlabel
 set xdata time
-plot "cases.data" every ::7 using 1:4 with linespoints linestyle 1 title "Cases"
+plot sum = init(0),\
+"cases.data" every ::7 using 1:4 with linespoints linestyle 1 title "Cases",\
+"cases.data" every ::7 using 1:(avg5($4)) with lines lw 3 lc rgb "blue" title "Averaged Trajectory"
