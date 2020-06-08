@@ -190,6 +190,14 @@ reporting performed by actual epidemiologists and data scientists.
   slowed to 'near completion', the range of this plot will be re-opened to show
   the growth ratio over the entire course of the event.
 
+- 8 Jun 2020: Due to changes in the data presented on the PA Department of Health
+  site, the script is no longer functioning. Apparently they're only updating the
+  ArcGIS site now, and posting that as an iframe in the page, like it's the year
+  1999 or something. Efforts will be made to obtain the previously available data
+  output from previous days, but until they provide a tabular format, it seems
+  unlikely.
+
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
