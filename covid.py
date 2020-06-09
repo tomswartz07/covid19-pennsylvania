@@ -52,10 +52,10 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-raw_html = simple_get('https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx')
+raw_html = simple_get('https://www.health.pa.gov/topics/disease/coronavirus/Pages/Coronavirus.aspx')
 html = BeautifulSoup(raw_html, 'html.parser')
 
-updated = html.find(class_='ms-rteStyle-Quote')
+updated = html.find(class_='ms-rteForeColor-2')
 if updated.text == '':
     updated_text = "Unable to get updated time"
     print(bcolors.OKBLUE + updated_text + bcolors.ENDC)
@@ -70,24 +70,29 @@ for row in rows:
     cells = row.findAll("td")
     items = []
     for index in cells:
-        items.append(index.text.strip(u'\u200b'))
+        item = index.text.rstrip('\u200b')
+        item = item.strip('\n*\r')
+        item.replace("*", "")
+        item.replace("\n", "")
+        item.replace("\u200b", "")
+        items.append(item)
     data.append(items)
 results = list(filter(None, data))
 
 json_out = json.loads(json.dumps(results))
 # Remove the stupid table rows that are actually headers
-json_out.pop(0)
+#json_out.pop(0)
 # Fix the statewide count, they're including probable cases in the count now
 json_out[0].insert(0, 'Statewide')
 # Remove the stupid table rows that are actually headers
-json_out.pop(1)
+#json_out.pop(1)
 # Handle the full statewide info
 #json_out[1].insert(0, 'Statewide')
 # Remove age and hospitalization rate percentages- not accurate
 # They're also showing an estimated (lol) percentage of recovered.
 # Three asterisks proceed this recovered number, so we'll just ignore it too.
-for i in range(1, 18):
-    json_out.pop(1)
+#for i in range(1, 18):
+#    json_out.pop(1)
 
 #affected_counties = int(len(json_out)) - 1
 
@@ -97,26 +102,26 @@ for i in range(1, 18):
 #
 # Heading gets cleared here, county homes get
 # skipped below
-json_out.pop(68)
+#json_out.pop(68)
 
 # Cool, also jamming demographic info in with no proper headers
 # Would be great if they didn't randomly update the page
 # and stuff various tables all over the place with no unique ids.
 # Let's drop that info off because it's not really relevant for this
-del json_out[68:]
+#del json_out[68:]
 
 # OF COURSE the order for unconfirmed, confirmed, and deaths are different than
 # the per-county table
-print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1]) + bcolors.ENDC)
+print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1].strip('*').strip('\n')) + bcolors.ENDC)
 #print(bcolors.HEADER + "…of which {} are probable/unconfirmed cases".format(json_out[1][2]) + bcolors.ENDC)
-print(bcolors.WARNING + bcolors.BOLD + \
-        "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
+#print(bcolors.WARNING + bcolors.BOLD + \
+#        "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
 #print(bcolors.WARNING + bcolors.BOLD + \
 #        "…of which {} are probable/unconfirmed deaths".format(json_out[1][4]) + bcolors.ENDC)
 for item in json_out:
     county = item[0].strip()
-    cases = item[1]
-    negatives = item[2]
+    cases = item[3].replace('*', '')
+    negatives = item[2].replace('*', '')
     deaths = "N/A"  #item[3].strip('\n') or 0
     if len(item) == 3:
         if county in ('Lancaster', 'Schuylkill'):

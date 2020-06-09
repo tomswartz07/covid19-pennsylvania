@@ -197,6 +197,12 @@ reporting performed by actual epidemiologists and data scientists.
   output from previous days, but until they provide a tabular format, it seems
   unlikely.
 
+- 9 Jun 2020: Partial restore of the previously available data. Until the DoH
+  restores the county-by-county table, no fully verbose info can be provided.
+  However, info on when the pages have been updated (for manual retrieval) as
+  well as a rough total case count is available. The DoH frequently changes the
+  formatting of this number throughout the day, so it may contain newline and
+  extraneous characters. They never said they were computer experts…
 
 ## Sample Output
 ```
