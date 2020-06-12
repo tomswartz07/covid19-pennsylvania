@@ -90,6 +90,17 @@ Typically, a daily update process is as follows:
     INSERT INTO covid19.pa_events (time, text) VALUES ('YYYY-MM-DD HH:MM:SS-4', 'Event');
     ```
 
+Putting it all together, as a one-liner, this is my daily update script:
+```sh
+psql -d $db_name -h $hostname -c "insert into covid19.covid19pa \
+(date, confirmed, deaths) values \
+(CURRENT_DATE, 77999, 6162);"; \
+psql -d $db_name -h $hostname --file=daily-update.sql; \
+gnuplot plot_PA_Cases.gpi; \
+git add .; \
+git diff --staged; \
+git commit -m "$(date +"%d %b %Y") Data";
+```
 ## Current Cases
 
 Below are graphs of confirmed cases, fatalities, and other potentially useful
@@ -109,7 +120,7 @@ graph, please see this excellent video by Henry Reich of
 
 ![New Cases](new_cases.png)
 
-## Calculation Formulas
+## Calculation Formulæ
 
 The only two datapoints provided by the PA Department of Health are
 `cases` and `deaths`.
@@ -133,6 +144,9 @@ for each value shown in `cases.data`.
 - -1 * (Estimated Day<sub>t</sub> - C<sub>t</sub>)
 5. **Pct Error:** The percent error calculated for the difference between the estimated count and the actual count.
 - ABS((Estimated Day<sub>t</sub> - C<sub>t</sub>) / C<sub>t</sub>)
+
+Also of note, the `daily-update.sql` file includes the full calculations for
+each of these items, allowing the database to calculate the values automatically.
 
 ## Disclaimers
 
