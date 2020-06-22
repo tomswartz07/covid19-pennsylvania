@@ -218,6 +218,14 @@ reporting performed by actual epidemiologists and data scientists.
   formatting of this number throughout the day, so it may contain newline and
   extraneous characters. They never said they were computer experts…
 
+- 20 Jun 2020: The Dept of Health is no longer updating the pages over the weekends.
+  This means that the numbers obtained via the script will not reflect the actual 
+  data, and must be manually calculated from the ArcGIS map. Obviously, this is
+  not an ideal situation, but as the numbers wane, it is an expected change.
+  All attempts will be made to accurately show the numbers as updated from the
+  page content. This only further emphasizes the need for repositories of data such
+  as this one. 
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
