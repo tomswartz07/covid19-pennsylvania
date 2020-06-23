@@ -53,8 +53,8 @@ set autoscale
 set key
 
 plot sum = init(0), \
-"cases.data" every ::35 using 1:5 smooth unique with linespoints linestyle 1 title "R_0 Growth Ratio",\
-"cases.data" every ::35 using 1:(avg5($5)) title "5 Day Rolling Average" with linespoints pt 7 ps 0.5 lw 1 lc rgb "blue"
+"cases.data" every ::45 using 1:5 smooth unique with linespoints linestyle 1 title "R_0 Growth Ratio",\
+"cases.data" every ::45 using 1:(avg5($5)) title "5 Day Rolling Average" with linespoints pt 7 ps 0.5 lw 1 lc rgb "blue"
 unset xdata
 unset yrange
 #
