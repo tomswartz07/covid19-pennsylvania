@@ -224,7 +224,14 @@ reporting performed by actual epidemiologists and data scientists.
   not an ideal situation, but as the numbers wane, it is an expected change.
   All attempts will be made to accurately show the numbers as updated from the
   page content. This only further emphasizes the need for repositories of data such
-  as this one. 
+  as this one.
+
+- 27 Jun 2020: In addition to no longer updating the pages over the weekend, the
+  actual data entry for fatalities (and possibly cases) is not accurate over the
+  weekend. It can be assumed that 'Monday Data' will be higher than average to
+  account for the discrepancy in the missing weekend data. Because the plots and
+  graphs have normalization and X-day averaging, this should not affect the overall
+  data visualizations.
 
 ## Sample Output
 ```
