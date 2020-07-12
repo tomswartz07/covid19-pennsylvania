@@ -233,6 +233,12 @@ reporting performed by actual epidemiologists and data scientists.
   graphs have normalization and X-day averaging, this should not affect the overall
   data visualizations.
 
+- 12 Jul 2020: PA Department of Health reports that their ArcGIS dashboard is
+  'down for maintenance' for all of the 12th, and most of the 13th. Direct link
+  to the dashboard shows that it has recent data, but it is uncorroborated by
+  other available resources. Data for this day may be updated/amended in the coming
+  days, pending the new availability of the data- so the plotted data may change.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
