@@ -239,6 +239,9 @@ reporting performed by actual epidemiologists and data scientists.
   other available resources. Data for this day may be updated/amended in the coming
   days, pending the new availability of the data- so the plotted data may change.
 
+- 13 Jul 2020: The numbers for 12 July have been amended to represent the corrected
+  information from the Department of Health.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
