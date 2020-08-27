@@ -1,3 +1,5 @@
+\pset pager off
+
 CREATE TEMP TABLE temp_us
 (LIKE covid19.covid19us INCLUDING ALL);
 
@@ -11,3 +13,16 @@ WHERE
 t1.date is NULL
 ON CONFLICT DO NOTHING
 RETURNING *;
+
+
+SELECT DISTINCT on (county)
+  county AS "County",
+  date::timestamptz AS "Date",
+  lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "Previous Cases",
+  cases AS "Current Cases",
+  cases - lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Cases"
+FROM covid19.covid19us
+WHERE
+  state = 'Pennsylvania'
+ORDER BY 1,2 desc
+;
