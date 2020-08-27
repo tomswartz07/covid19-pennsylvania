@@ -12,7 +12,14 @@ If you wish to highlight different counties, simply update the array in the scri
 I gave a brief talk about this repository as part of TechLancaster.
 The video is available [here](https://youtu.be/c3zoHHA-1Nw).
 
-## Using
+This repository contains several different items, each for their own
+purpose.
+
+1. Website scrape script, to allow for easy view of updated info
+2. GnuPlot scripts, to graph and visualize the data
+3. PostgreSQL scripts, to allow for storage and further analysis of the data
+
+### Using the Web Scraper Script
 
 To use this script, simply run it:
 ```
@@ -33,9 +40,32 @@ python covid.py
 affect the bandwidth of the host. Please do not use this script to poll the
 site more often than once every hour or so. The data does not change that often.
 
-#### Database
-Ideally, the daily cases and fatalities would be stored in a database for ease
-of use and to allow for powerful querying features.
+### Plot Generation
+The scripts and data used to generate the graphs are also included in the
+repository.
+
+The data is not automatically populated in to the `gnuplot` data file, it is
+instead calculated separately following the daily PA Dept of Health update,
+and provided as described in this repository, so that careful attention can be
+provided to ensure validity.
+The calculations for every value, aside from the two provided by the Dept of
+Health (Daily total cases and Daily total deaths) are performed by the
+[daily_update.sql](https://github.com/tomswartz07/covid19-pennsylvania/blob/master/daily-update.sql)
+script, which is then provided here for reference.
+
+Simply install `gnuplot` and run:
+
+```
+gnuplot plot_PA_Cases.gpi
+```
+
+The image file will be updated at `cases.png`, `new_cases.png`, `trajectory.png`
+and any other images selected for generation by the gnuplot script.
+
+### PostgreSQL Database
+The daily information, such as the new cases, new fatalities, and other
+calculated info should be stored in a database for ease of use and to allow for
+powerful querying features.
 In an effort to allow for easy duplication of the setup, a `schema.sql` file is
 provided to allow for a duplicate Postgres database to be used.
 
@@ -56,20 +86,11 @@ A further bonus of having the information in a database is the ability to hook
 external tools into it for visualization and data processing uses, such as
 Grafana.
 
-#### Plot Generation
-The scripts and data used to generate the graphs are also included in the
-repository.
-The data is not automatically populated in to the `gnuplot` data file, it is
-instead calculated separately following the daily PA Dept of Health update,
-and provided as described in this repository, so that careful attention can be
-provided to ensure validity.
-Simply install `gnuplot` and run:
-
-```
-gnuplot plot_PA_Cases.gpi
-```
-
-The image file will be updated at `cases.png`
+At the conclusion (if there ever is one) of the major part of the infection in
+the Pennsylvania or United States as a whole, an entire `pg_dump` file will be
+provided, which contains all of the daily case counts as well as other PA events.
+This information can be used as a good 'sample database' for various projects,
+as the column types are varied and split across several unique tables.
 
 ## Updating Process
 Typically, a daily update process is as follows:
@@ -99,7 +120,8 @@ psql -d $db_name -h $hostname --file=daily-update.sql; \
 gnuplot plot_PA_Cases.gpi; \
 git add .; \
 git diff --staged; \
-git commit -m "$(date +"%d %b %Y") Data";
+git commit -m "$(date +"%d %b %Y") Data";\
+git push
 ```
 ## Current Cases
 
@@ -147,6 +169,33 @@ for each value shown in `cases.data`.
 
 Also of note, the `daily-update.sql` file includes the full calculations for
 each of these items, allowing the database to calculate the values automatically.
+
+## Extended Information
+
+Because the data is stored in a database, there is much more flexibility for
+querying and interacting with the data.
+
+Some examples include:
+
+**Viewing New Daily Cases, Per-County**
+
+If using the full data information, including the new case counts from [NYT
+data repository](https://github.com/nytimes/covid-19-data), then county-by-county
+information is also available.
+
+```sql
+SELECT distinct on (county)
+  county AS "County",
+  date::timestamptz AS "Date",
+  lag(cases, 1) over (partition by county order by date::timestamptz) as "Previous Cases",
+  cases as "Current Cases",
+  cases - lag(cases, 1) over (partition by county order by date::timestamptz) as "New Cases"
+FROM covid19.covid19us
+WHERE
+  state = 'Pennsylvania'
+ORDER BY 1,2 desc
+;
+```
 
 ## Disclaimers
 
@@ -219,7 +268,7 @@ reporting performed by actual epidemiologists and data scientists.
   extraneous characters. They never said they were computer experts…
 
 - 20 Jun 2020: The Dept of Health is no longer updating the pages over the weekends.
-  This means that the numbers obtained via the script will not reflect the actual 
+  This means that the numbers obtained via the script will not reflect the actual
   data, and must be manually calculated from the ArcGIS map. Obviously, this is
   not an ideal situation, but as the numbers wane, it is an expected change.
   All attempts will be made to accurately show the numbers as updated from the
