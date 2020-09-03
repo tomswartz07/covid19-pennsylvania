@@ -118,15 +118,16 @@ print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1].strip('*
 #        "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
 #print(bcolors.WARNING + bcolors.BOLD + \
 #        "…of which {} are probable/unconfirmed deaths".format(json_out[1][4]) + bcolors.ENDC)
-for item in json_out:
-    county = item[0].strip()
-    cases = item[3].replace('*', '')
-    negatives = item[2].replace('*', '')
-    deaths = "N/A"  #item[3].strip('\n') or 0
-    if len(item) == 3:
-        if county in ('Lancaster', 'Schuylkill'):
-            print(bcolors.WARNING + "Warning: {} cases, {} deaths in {} county.".format(cases, deaths, county) + bcolors.ENDC)
-        if county not in ('Statewide', 'Probable'):
-            print("{} county: {} cases, {} deaths".format(county, cases, deaths))
-    elif len(item) > 3:
-        pass
+#for item in json_out:
+#    print(item)
+#    county = item[0].strip()
+#    cases = item[3].replace('*', '')
+#    negatives = item[2].replace('*', '')
+#    deaths = "N/A"  #item[3].strip('\n') or 0
+#    if len(item) == 3:
+#        if county in ('Lancaster', 'Schuylkill'):
+#            print(bcolors.WARNING + "Warning: {} cases, {} deaths in {} county.".format(cases, deaths, county) + bcolors.ENDC)
+#        if county not in ('Statewide', 'Probable'):
+#            print("{} county: {} cases, {} deaths".format(county, cases, deaths))
+#    elif len(item) > 3:
+#        pass
