@@ -291,6 +291,14 @@ reporting performed by actual epidemiologists and data scientists.
 - 13 Jul 2020: The numbers for 12 July have been amended to represent the corrected
   information from the Department of Health.
 
+- 13 Sept 2020: Data reported for today was exceptionally low; likely under-reported.
+  This is likely due to the majority of testing sites being closed or non-reporting,
+  on Saturdays. (Remember, data is typically +1 day offset from actual report date).
+  This trend will likely increase as the majority of the testing/reporting sites
+  pre-emptively close down. As such and as has been the case for a long time, the
+  'average' values calculated from these cases are typically a better metric for
+  the ongoing event.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
