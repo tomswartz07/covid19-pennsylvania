@@ -17,7 +17,12 @@ RETURNING *;
 
 ANALYZE covid19.covid19us;
 
+\set QUIET 1
 \pset pager off
+\pset footer off
+\timing
+\set QUIET 0
+-- Show all results
 SELECT DISTINCT on (county)
   county AS "County",
   date::timestamptz AS "Date",
@@ -28,4 +33,26 @@ FROM covid19.covid19us
 WHERE
   state = 'Pennsylvania'
 ORDER BY 1,2 desc
+;
+
+-- Show top 10 counties
+\set QUIET 1
+\pset tuples_only
+\set QUIET 0
+WITH new AS (SELECT DISTINCT ON (county)
+  county AS "County",
+  date::timestamptz AS "Date",
+  lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "Previous Cases",
+  cases AS "Current Cases",
+  cases - lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Cases"
+FROM covid19.covid19us
+WHERE
+  state = 'Pennsylvania'
+ORDER BY 1,2 desc)
+SELECT
+"County",
+"New Cases"
+FROM new
+ORDER BY 2 DESC
+LIMIT 5
 ;
