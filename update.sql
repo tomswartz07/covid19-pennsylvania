@@ -1,4 +1,4 @@
-CREATE TEMP TABLE temp_us
+CREATE UNLOGGED TABLE temp_us
 (LIKE covid19.covid19us INCLUDING ALL);
 
 \COPY temp_us from '~/git/nytimes-covid19-data/us-counties.csv' delimiter ',' header csv;
@@ -14,6 +14,8 @@ UPDATE SET
 cases = excluded.cases,
 deaths = excluded.deaths
 RETURNING *;
+
+DROP TABLE temp_us;
 
 ANALYZE covid19.covid19us;
 
