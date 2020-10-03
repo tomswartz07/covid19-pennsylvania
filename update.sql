@@ -27,7 +27,7 @@ ANALYZE covid19.covid19us;
 -- Show all results
 SELECT DISTINCT on (county)
   county AS "County",
-  date::timestamptz AS "Date",
+  date::date AS "Date",
   lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "Previous Cases",
   cases AS "Current Cases",
   cases - lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Cases"
@@ -37,16 +37,16 @@ WHERE
 ORDER BY 1,2 desc
 ;
 
--- Show top 10 counties
+-- Show top 5 counties
 \set QUIET 1
 \pset tuples_only
 \set QUIET 0
 WITH new AS (SELECT DISTINCT ON (county)
   county AS "County",
   date::timestamptz AS "Date",
-  lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "Previous Cases",
+  lag(cases, 1) over (partition BY county ORDER BY date::date) AS "Previous Cases",
   cases AS "Current Cases",
-  cases - lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Cases"
+  cases - lag(cases, 1) over (partition BY county ORDER BY date::date) AS "New Cases"
 FROM covid19.covid19us
 WHERE
   state = 'Pennsylvania'

@@ -299,6 +299,12 @@ reporting performed by actual epidemiologists and data scientists.
   'average' values calculated from these cases are typically a better metric for
   the ongoing event.
 
+- 4 Oct 2020: No new cases were updated for the PA Dept of Health page, not because
+  there was no new cases, but likely because of a lack of employees able to collate
+  and post the information.
+  This represents a major oversight in the reporting since the onset of the epidemic.
+  Attempts will be made to adjust for the information discrepancy (i.e. averaging)
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
