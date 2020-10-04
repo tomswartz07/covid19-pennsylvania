@@ -304,6 +304,9 @@ reporting performed by actual epidemiologists and data scientists.
   and post the information.
   This represents a major oversight in the reporting since the onset of the epidemic.
   Attempts will be made to adjust for the information discrepancy (i.e. averaging)
+  Because the data was only updated on 04 Oct to cover both dates, the values for
+  new cases were amended to show the average growth across the two days, so that
+  the data remains consistent with standard growth.
 
 ## Sample Output
 ```
