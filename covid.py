@@ -1,4 +1,5 @@
 import json
+import re
 from contextlib import closing
 from requests import get
 from requests.exceptions import RequestException
@@ -52,13 +53,12 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-raw_html = simple_get('https://www.health.pa.gov/topics/disease/coronavirus/Pages/Coronavirus.aspx')
+raw_html = simple_get('https://www.health.pa.gov/topics/disease/coronavirus/Pages/Cases.aspx')
 html = BeautifulSoup(raw_html, 'html.parser')
 
 updated = html.find(class_='ms-rteForeColor-2')
-if updated.text == '':
-    updated_text = "Unable to get updated time"
-    print(bcolors.OKBLUE + updated_text + bcolors.ENDC)
+if updated is None:
+    pass
 elif updated.text is not None:
     updated_text = updated.text.replace('\n', '').replace('  ', '')
     print(bcolors.OKBLUE + updated_text + bcolors.ENDC)
@@ -112,7 +112,7 @@ json_out[0].insert(0, 'Statewide')
 
 # OF COURSE the order for unconfirmed, confirmed, and deaths are different than
 # the per-county table
-print(bcolors.HEADER + "{} total cases statewide".format(json_out[0][1].strip('*').strip('\n')) + bcolors.ENDC)
+print(bcolors.HEADER + "{} total cases statewide".format(re.sub('[^\d]','',json_out[0][1].strip('*').strip('\n'))) + bcolors.ENDC)
 #print(bcolors.HEADER + "…of which {} are probable/unconfirmed cases".format(json_out[1][2]) + bcolors.ENDC)
 #print(bcolors.WARNING + bcolors.BOLD + \
 #        "{} total deaths statewide".format(json_out[0][2]) + bcolors.ENDC)
