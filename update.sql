@@ -30,7 +30,8 @@ SELECT DISTINCT on (county)
   date::date AS "Date",
   lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "Previous Cases",
   cases AS "Current Cases",
-  cases - lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Cases"
+  cases - lag(cases, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Cases",
+  deaths - lag(deaths, 1) over (partition BY county ORDER BY date::timestamptz) AS "New Deaths"
 FROM covid19.covid19us
 WHERE
   state = 'Pennsylvania'
