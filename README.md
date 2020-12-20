@@ -199,16 +199,6 @@ ORDER BY 1,2 desc
 
 ## Disclaimers
 
-As of 22 Apr 2020, the PA Dept of Health began providing 'probable' cases and
-deaths, alongside confirmed data.
-Because until this point, all data were assumed to be probable (and most likely)
-the calculations will continue to use this metric.
-Reasonable accommodations will be made to integrate the probable cases into error
-calculations, where possible.
-It's also important to note that the numbers do not identify which counties in
-particular are included in the 'probable' counts, so it's presently impossible
-do differentiate or reconcile the numbers.
-
 This information is provided as part of an amateur attempt to analyze the data.
 This information should not be interpreted as exact scientific analysis, nor
 has it been peer reviewed in any way.
@@ -228,6 +218,16 @@ For a more scientific and precise analysis, it is recommended that you seek out
 reporting performed by actual epidemiologists and data scientists.
 
 ## Notable Changes
+
+- 22 Apr 2020: The PA Dept of Health began providing 'probable' cases and
+  deaths, alongside confirmed data.
+  Because until this point, all data were assumed to be probable (and most likely)
+  the calculations will continue to use this metric.
+  Reasonable accommodations will be made to integrate the probable cases into error
+  calculations, where possible.
+  It's also important to note that the numbers do not identify which counties in
+  particular are included in the 'probable' counts, so it's presently impossible
+  do differentiate or reconcile the numbers.
 
 - 27 Apr 2020: Updated method for creating the data file. Previously, data for
   each day was computed by manual processes in a spreadsheet. As of today, all
@@ -307,6 +307,11 @@ reporting performed by actual epidemiologists and data scientists.
   Because the data was only updated on 04 Oct to cover both dates, the values for
   new cases were amended to show the average growth across the two days, so that
   the data remains consistent with standard growth.
+
+- 20 Dec 2020: The daily update count is abnormally low, indicating that the majority
+  of counties have not been reported. As with previous data anomalies like this,
+  it is likely due to staffing issues, where the reporting personnel are not-available.
+  It should be expected that the data for today will be amended in the coming days.
 
 ## Sample Output
 ```
