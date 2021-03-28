@@ -313,6 +313,13 @@ reporting performed by actual epidemiologists and data scientists.
   it is likely due to staffing issues, where the reporting personnel are not-available.
   It should be expected that the data for today will be amended in the coming days.
 
+- 27 Mar 2021: According to the Dept of Health social media feeds, they had technical
+  issues with the daily numbers, resulting in a temporarily incorrect count.
+  As of 4pm, the reported numbers were 859976 confirmed, 152323 probable (1012299 total)
+  However, as of an update at 11pm, the numbers were 860141 confirmed, 149413 probable
+  leading to 1009554 total cases.
+  The data has been updated to reflect this correction on this date.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
