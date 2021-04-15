@@ -13,7 +13,7 @@ ON CONFLICT (date, fips) DO
 UPDATE SET
 cases = excluded.cases,
 deaths = excluded.deaths
-RETURNING *;
+;
 
 DROP TABLE temp_us;
 
