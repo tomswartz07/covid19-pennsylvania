@@ -320,6 +320,10 @@ reporting performed by actual epidemiologists and data scientists.
   leading to 1009554 total cases.
   The data has been updated to reflect this correction on this date.
 
+- 31 Jul 2021: The daily update has not been made available. If information is
+  provided prior to the standard noon-time update on 1 Aug 2021, then it will be
+  considered part of the case count for the 31st.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
