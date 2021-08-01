@@ -324,6 +324,10 @@ reporting performed by actual epidemiologists and data scientists.
   provided prior to the standard noon-time update on 1 Aug 2021, then it will be
   considered part of the case count for the 31st.
 
+- 01 Aug 2021: Daily update has combined 31 Jul and 01 Aug cases, but information
+  provided with this update indicates that the new cases were very similar for
+  both days. Information has been updated to reflect this.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
