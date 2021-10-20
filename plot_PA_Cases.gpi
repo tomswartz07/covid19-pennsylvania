@@ -64,8 +64,10 @@ set xlabel "Total Confirmed Cases"
 unset key
 set logscale x
 set logscale y
+set xrange [2.00000:2e+07]
 plot sum = init(0), \
 "cases.data" using 2:(avg5($4)) with lines lw 3 lc rgb "blue" title "Averaged Trajectory"
+unset xrange
 unset logscale x
 unset logscale y
 #
