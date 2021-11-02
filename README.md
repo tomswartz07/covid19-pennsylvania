@@ -328,6 +328,10 @@ reporting performed by actual epidemiologists and data scientists.
   provided with this update indicates that the new cases were very similar for
   both days. Information has been updated to reflect this.
 
+- 01 Nov 2021: Daily update was not provided for this day, but was made available
+  overnight, with a significantly lower count than average. This information will
+  be amended if further updates are provided.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
