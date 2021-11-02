@@ -331,6 +331,9 @@ reporting performed by actual epidemiologists and data scientists.
 - 01 Nov 2021: Daily update was not provided for this day, but was made available
   overnight, with a significantly lower count than average. This information will
   be amended if further updates are provided.
+  Dept of Health clarified it is 'technical issues' and the cases will be posted
+  03 Nov 2021 with an overview of the missing dates.
+  https://twitter.com/PAHealthDept/status/1455612258080407560
 
 ## Sample Output
 ```
