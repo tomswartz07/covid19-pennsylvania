@@ -335,6 +335,12 @@ reporting performed by actual epidemiologists and data scientists.
   03 Nov 2021 with an overview of the missing dates.
   https://twitter.com/PAHealthDept/status/1455612258080407560
 
+- 13 Nov 2021: Daily count is abnormally high, with a percent-error of ~1% but an
+  increase in daily cases by nearly 15k over average. As such, the data for this
+  date is slightly suspect, but may be caused by a delay in reporting from various
+  counties throughout the state. Notes will be updated to describe any further
+  information, if provided by the PA Dept of Health.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
