@@ -35,6 +35,8 @@ SELECT DISTINCT on (county)
 FROM covid19.covid19us
 WHERE
   state = 'Pennsylvania'
+AND
+  county != 'Unknown'
 ORDER BY 1,2 desc
 ;
 
