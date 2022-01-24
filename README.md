@@ -341,6 +341,11 @@ reporting performed by actual epidemiologists and data scientists.
   counties throughout the state. Notes will be updated to describe any further
   information, if provided by the PA Dept of Health.
 
+- 24 Jan 2022: The Python script no longer is able to parse/display the total counts
+  because the DoH has altered the page and removed the total counts entirely.
+  All information regarding updated counts now comes from the [ArcGIS](https://experience.arcgis.com/experience/ed2def13f9b045eda9f7d22dbc9b500e)
+  site, as has been for quite some time.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
