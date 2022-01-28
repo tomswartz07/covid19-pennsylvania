@@ -346,6 +346,11 @@ reporting performed by actual epidemiologists and data scientists.
   All information regarding updated counts now comes from the [ArcGIS](https://experience.arcgis.com/experience/ed2def13f9b045eda9f7d22dbc9b500e)
   site, as has been for quite some time.
 
+- 28 Jan 2022: Daily count of cases has not been provided for today, and the DoH
+  has only provided an updated count of deaths. This information will be amended
+  if further updates are provided.
+
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
