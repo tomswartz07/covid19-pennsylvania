@@ -350,6 +350,10 @@ reporting performed by actual epidemiologists and data scientists.
   has only provided an updated count of deaths. This information will be amended
   if further updates are provided.
 
+- 8 Feb 2022: Daily count of total cases today is *lower* than yesterday, causing
+  the number of daily cases to be negative. This is presumed to be an error in
+  the data, and as such, the cases from today will be amended when it is corrected.
+
 
 ## Sample Output
 ```
