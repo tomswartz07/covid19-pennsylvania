@@ -354,6 +354,9 @@ reporting performed by actual epidemiologists and data scientists.
   the number of daily cases to be negative. This is presumed to be an error in
   the data, and as such, the cases from today will be amended when it is corrected.
 
+- 21 Feb 2022: Daily count of cases has not been provided for today. Information
+  will be amended if further updates are provided.
+
 
 ## Sample Output
 ```
