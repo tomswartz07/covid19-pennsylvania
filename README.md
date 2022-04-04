@@ -357,6 +357,8 @@ reporting performed by actual epidemiologists and data scientists.
 - 21 Feb 2022: Daily count of cases has not been provided for today. Information
   will be amended if further updates are provided.
 
+- 03 Apr 2022: Daily count of cases has not been provided for today. Information
+  will be amended if further updates are provided.
 
 ## Sample Output
 ```
