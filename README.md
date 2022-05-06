@@ -360,6 +360,12 @@ reporting performed by actual epidemiologists and data scientists.
 - 03 Apr 2022: Daily count of cases has not been provided for today. Information
   will be amended if further updates are provided.
 
+- 06 May 2022: Daily count of cases has not been provided for today. Information
+  will be amended if further updates are provided.
+
+- 07 May 2022: Daily count of cases has not been provided for today. The information
+  source indicates that cases will be updated weekly, on Wednesdays, moving forward.
+
 ## Sample Output
 ```
 * Map, table and case count last updated at 12:00 p.m. on 3/26/2020
