@@ -170,6 +170,9 @@ for each value shown in `cases.data`.
 Also of note, the `daily-update.sql` file includes the full calculations for
 each of these items, allowing the database to calculate the values automatically.
 
+NOTE: As of 07 May 2022, the cases will be updated weekly, so each 'day' is the weekly total new cases divided by 7.
+As such, New Cases for the entire week will be approximately the same.
+
 ## Extended Information
 
 Because the data is stored in a database, there is much more flexibility for
@@ -365,6 +368,9 @@ reporting performed by actual epidemiologists and data scientists.
 
 - 07 May 2022: Daily count of cases has not been provided for today. The information
   source indicates that cases will be updated weekly, on Wednesdays, moving forward.
+
+- 14 May 2022: Because the daily count of cases will only be provided weekly, a
+  direct average will be calculated for all daily cases moving forward.
 
 ## Sample Output
 ```
